@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class AStarEditor : MonoBehaviour
+namespace PathFinding
 {
-    // Start is called before the first frame update
-    void Start()
+    [CustomEditor(typeof(AStar))]
+    public class AStarEditor : Editor
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+            
+            GUILayout.Space(10);
+            
+            AStar aStar = (AStar) target;
+            
+            if(GUILayout.Button("Create Grid"))
+            {
+                aStar.CreateGrid();
+            }
+        }
     }
 }
